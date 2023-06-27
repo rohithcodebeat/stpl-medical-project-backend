@@ -38,6 +38,13 @@ class OrganisationModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+class OrganisationCategoryDescriptionModel(models.Model):
+    description = models.TextField(null=True, blank=True)
+    
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 
 class OrganisationCategoryModel(models.Model):
     organisation = models.ForeignKey(OrganisationModel, on_delete=models.CASCADE, related_name="OrganisationCategoryModel_organisation", null=True, blank=True)
@@ -46,13 +53,13 @@ class OrganisationCategoryModel(models.Model):
     category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE, related_name="OrganisationCategoryModel_category")
     media = models.ManyToManyField(OrganisationMediaGalleryModel, related_name="OrganisationCategoryModel_media", blank=True)
     icon = models.ForeignKey(OrganisationMediaGalleryModel, on_delete=models.CASCADE,related_name="OrganisationCategoryModel_icon", blank=True, null=True)
-    description = models.TextField(null=True, blank=True)
+    description = models.ManyToManyField(OrganisationCategoryDescriptionModel, related_name="OrganisationCategoryModel_description", blank=True)
 
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
 class OrganisationDoctorModel(models.Model):
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="OrganisationDoctorModel_user")
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="OrganisationDoctorModel_user") # Doctor
     category = models.ForeignKey(OrganisationCategoryModel, on_delete=models.CASCADE, related_name="OrganisationDoctorModel_category", null=True, blank=True)
     price = models.DecimalField(decimal_places=4, max_digits=10,null=True, blank=True)
     
