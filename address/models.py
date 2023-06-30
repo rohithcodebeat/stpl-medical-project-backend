@@ -8,6 +8,12 @@ class CountryModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        if len(self.title)<=20:
+            return self.title
+        else:
+            return self.title[0:20]
+
 class StateModel(models.Model):
     country = models.ForeignKey(CountryModel, on_delete=models.CASCADE, related_name="StateModel_country")
     title = models.CharField(max_length=200)
@@ -15,6 +21,11 @@ class StateModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        if len(self.title)<=20:
+            return self.title
+        else:
+            return self.title[0:20]
 
 class CityModel(models.Model):
     country = models.ForeignKey(CountryModel, on_delete=models.CASCADE, related_name="CityModel_country")
@@ -24,6 +35,11 @@ class CityModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        if len(self.title)<=20:
+            return self.title
+        else:
+            return self.title[0:20]
 
 
 class AddressModel(models.Model):

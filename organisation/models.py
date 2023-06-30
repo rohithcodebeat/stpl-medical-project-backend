@@ -13,6 +13,12 @@ class CategoryModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        if len(self.title)<=20:
+            return self.title
+        else:
+            return self.title[0:20]
+
 
 class OrganisationMediaGalleryModel(models.Model):
     media = models.URLField(max_length=1000, null=True, blank=True)
@@ -26,6 +32,7 @@ class OrganisationModel(models.Model):
     title = models.CharField(max_length=500, null=True, blank=True)
     sub_title = models.CharField(max_length=500, null=True, blank=True)
     profile = models.URLField(max_length=1000, null=True, blank=True)
+    icon = models.ForeignKey(OrganisationMediaGalleryModel, on_delete=models.CASCADE,related_name="OrganisationModel_icon", blank=True, null=True)
     media = models.ManyToManyField(OrganisationMediaGalleryModel, related_name="OrganisationModel_media", blank=True)
     description = models.TextField(null=True, blank=True)
     org_type = models.CharField(max_length=100, choices=OrganisationTypeEnumType.choices(), null=True, blank=True)
@@ -34,15 +41,27 @@ class OrganisationModel(models.Model):
     x_coordinate = models.CharField(max_length=100, null=True, blank=True)
     y_coordinate = models.CharField(max_length=100, null=True, blank=True)
 
-    
+
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        if len(self.title)<=20:
+            return self.title
+        else:
+            return self.title[0:20]
 
 class OrganisationCategoryDescriptionModel(models.Model):
     description = models.TextField(null=True, blank=True)
     
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        if len(self.description)<=20:
+            return self.description
+        else:
+            return self.description[0:20]
 
 
 
@@ -58,12 +77,26 @@ class OrganisationCategoryModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        if len(self.title)<=20:
+            return self.title
+        else:
+            return self.title[0:20]
+
 class OrganisationDoctorModel(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="OrganisationDoctorModel_user") # Doctor
     category = models.ForeignKey(OrganisationCategoryModel, on_delete=models.CASCADE, related_name="OrganisationDoctorModel_category", null=True, blank=True)
     price = models.DecimalField(decimal_places=4, max_digits=10,null=True, blank=True)
-    
+    is_fasting=models.BooleanField(default=False)
+
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        name=self.category.title
+        if len(name)<=20:
+            return name
+        else:
+            return name[0:20]
 
 

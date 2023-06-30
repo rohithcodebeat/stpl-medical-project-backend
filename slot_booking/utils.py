@@ -6,6 +6,7 @@ class SlotBookingStatusTypeEnumType(Enum):
     UPCOMING = "UPCOMING"
     COMPLETE = "COMPLETED"
     FAILED = "FAILED"
+    CANCELLED = "CANCELLED"
 
     @classmethod
     def choices(cls):
