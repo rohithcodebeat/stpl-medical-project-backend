@@ -13,7 +13,7 @@ class AppAPIsOrganisationDoctorModelListSerializer(serializers.ModelSerializer):
     profile=serializers.SerializerMethodField()
     class Meta:
         model=OrganisationDoctorModel
-        fields=['id','doctor','profile','price','is_fasting','category']
+        fields=['id','doctor','profile','price','is_fasting','experience','doc_category','about','category']
 
     def get_doctor(self,obj):
         try:
@@ -60,7 +60,7 @@ class AppAPIsOrganisationModelListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model=OrganisationModel
-        fields=['id','title','sub_title','profile','icon','address','tests']
+        fields=['id','title','sub_title','profile','icon','address','phone_number','rating','tests']
 
     def get_address(self,obj):
         try:

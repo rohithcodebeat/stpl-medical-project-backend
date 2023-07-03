@@ -37,7 +37,8 @@ class OrganisationModel(models.Model):
     description = models.TextField(null=True, blank=True)
     org_type = models.CharField(max_length=100, choices=OrganisationTypeEnumType.choices(), null=True, blank=True)
     address = models.ForeignKey(AddressModel, on_delete=models.CASCADE, related_name="OrganisationModel_address", blank=True, null=True)
-
+    phone_number=models.CharField(max_length=15,null=True,blank=True)
+    rating=models.DecimalField(max_digits=3,decimal_places=2,null=True,blank=True)
     x_coordinate = models.CharField(max_length=100, null=True, blank=True)
     y_coordinate = models.CharField(max_length=100, null=True, blank=True)
 
@@ -88,7 +89,10 @@ class OrganisationDoctorModel(models.Model):
     category = models.ForeignKey(OrganisationCategoryModel, on_delete=models.CASCADE, related_name="OrganisationDoctorModel_category", null=True, blank=True)
     price = models.DecimalField(decimal_places=4, max_digits=10,null=True, blank=True)
     is_fasting=models.BooleanField(default=False)
-
+    experience=models.IntegerField(null=True, blank=True)
+    doc_category=models.CharField(max_length=100,null=True, blank=True)
+    rating=models.DecimalField(max_digits=3,decimal_places=2,null=True,blank=True)
+    about=models.TextField(null=True,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
