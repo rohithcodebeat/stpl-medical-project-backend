@@ -3,6 +3,12 @@ from ..models import CategoryModel,OrganisationMediaGalleryModel,OrganisationMod
 from address.app_apis.serializers import AppAPIsAddressModelListSerializer
 from userprofile.models import UserProfileModel
 
+class APPAPIsCategoryModelListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoryModel
+        fields = "__all__"
+
+
 class AppAPIsOrganisationCategoryDescriptionModelListSerializer(serializers.ModelSerializer):
     class Meta:
         model=OrganisationCategoryDescriptionModel
