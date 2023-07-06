@@ -12,7 +12,7 @@ class SlotBookingRecordMediaModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class OrganisationSlotBookingModel(models.Model):
-    booking_id = models.CharField(max_length=100)
+    booking_id = models.CharField(max_length=100,null=True, blank=True)
     doctor = models.ForeignKey(OrganisationDoctorModel, on_delete=models.CASCADE, related_name="OrganisationSlotBookingModel_doctor")
     date = models.DateField(null=True, blank=True)
     start_datetime = models.DateTimeField(null=True, blank=True)
@@ -39,7 +39,7 @@ id = "SLOTID"+str(dt.year)+str(dt.month)+str(dt.day)+str(dt.hour)+str(dt.minute)
 """
 
 class OrderModel(models.Model):
-    booking_id = models.CharField(max_length=100)
+    booking_id = models.CharField(max_length=100,null=True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="OrderModel_user")
     items = models.ManyToManyField(OrganisationSlotBookingModel, related_name="OrderModel_items", blank=True)
     total_paid = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
