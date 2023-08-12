@@ -87,11 +87,11 @@ class OrganisationCategoryModel(models.Model):
 class OrganisationDoctorModel(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name="OrganisationDoctorModel_user") # Doctor
     category = models.ForeignKey(OrganisationCategoryModel, on_delete=models.CASCADE, related_name="OrganisationDoctorModel_category", null=True, blank=True)
-    price = models.DecimalField(decimal_places=4, max_digits=10,null=True, blank=True)
+    price = models.DecimalField(decimal_places=2, max_digits=10,null=True, blank=True)
     is_fasting=models.BooleanField(default=False)
     experience=models.IntegerField(null=True, blank=True)
     doc_category=models.CharField(max_length=100,null=True, blank=True)
-    rating=models.DecimalField(max_digits=3,decimal_places=2,null=True,blank=True)
+    rating=models.DecimalField(max_digits=3,decimal_places=1,null=True,blank=True)
     about=models.TextField(null=True,blank=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
