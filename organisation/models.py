@@ -104,3 +104,55 @@ class OrganisationDoctorModel(models.Model):
             return name[0:20]
 
 
+"""
+
+Price Comparison Charts
+
+Slot Available -> order_by=[slot_is_available]
+
+
+User Reviews
+
+
+
+mark
+
+-> 5 users
+-> 4/5
+-> 3/5
+-> 5/5
+-> 2/5
+-> 3/5
+-> (17/5)-> 3.4
+
+
+
+
+
+
+John -> 10
+
+slots_avaiable = OrganisationSlotBookingModel.objects.filter(
+    doctor=OrganisationDoctorModel, is_booked=False
+    ).count()
+
+    
+Mark -> 12
+
+lucy -> 13
+
+
+
+[
+{
+"name" : "john",
+"slot" : 10
+},{
+"name" : "Mark",
+"slot" : 12
+}
+]
+
+
+
+"""
